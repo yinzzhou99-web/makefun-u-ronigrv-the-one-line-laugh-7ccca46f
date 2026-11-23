@@ -3,7 +3,7 @@
 import os
 import sys
 
-LINE = "My bank just flagged 'unusual activity' on my card — it was me buying vegetables."
+LINE = "My bank just flagged 'unusual activity' on my card \u2014 it was me buying vegetables."
 
 OUTPUT_PATH = os.path.join("/output", "entry.txt")
 
