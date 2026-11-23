@@ -1,26 +1,18 @@
-#!/usr/bin/env python3
-"""The One-Line Laugh: emit the chosen one-liner to /output/entry.txt.
+"""Write a single funny line to the output file."""
 
-One sentence, well under the 200-character gate, built to land its surprise
-at the end: the "unusual activity" a bank flags turns out to be the most
-ordinary, healthy thing imaginable. Stdlib only, deterministic, no network.
-The output directory is created if needed but never removed; only entry.txt
-is written inside it.
-"""
+import os
+import sys
 
-from pathlib import Path
+LINE = "My bank just flagged 'unusual activity' on my card — it was me buying vegetables."
 
-LINE = "My bank just flagged 'unusual activity' on my card \u2014 it was me buying vegetables."
-
-OUT_PATH = Path("/output") / "entry.txt"
+OUTPUT_PATH = os.path.join("/output", "entry.txt")
 
 
-def main() -> None:
+def main():
     if not LINE or len(LINE) > 200:
-        raise SystemExit("line fails the 1-200 character gate")
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUT_PATH, "w", encoding="utf-8", newline="") as f:
-        f.write(LINE)
+        sys.exit("error: entry line must be non-empty and at most 200 characters")
+    with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as handle:
+        handle.write(LINE)
 
 
 if __name__ == "__main__":
