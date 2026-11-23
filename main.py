@@ -16,8 +16,11 @@ OUT_PATH = Path("/output") / "entry.txt"
 
 
 def main() -> None:
+    if not LINE or len(LINE) > 200:
+        raise SystemExit("line fails the 1-200 character gate")
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(LINE, encoding="utf-8")
+    with open(OUT_PATH, "w", encoding="utf-8", newline="") as f:
+        f.write(LINE)
 
 
 if __name__ == "__main__":
